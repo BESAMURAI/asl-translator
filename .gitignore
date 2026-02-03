@@ -1,1 +1,26 @@
-hi
+# ASL dataset images (large - train locally, keep only asl_model.pkl + asl_landmarks.csv)
+backend/asl_alphabet_train/
+backend/asl_alphabet_test/
+
+# Python
+backend/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Env files (if you add any secrets later)
+.env
+.env.local
