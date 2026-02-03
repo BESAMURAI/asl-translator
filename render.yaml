@@ -1,0 +1,14 @@
+# Render Blueprint - ASL Translator
+# Deploy: connect this repo in Render Dashboard and use "Apply" or create a new Web Service from this blueprint.
+
+services:
+  - type: web
+    name: asl-translator
+    runtime: python
+    plan: free
+
+    # Repo root = asl-translator (backend + frontend both deployed)
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && gunicorn app:app --bind 0.0.0.0:$PORT
+
+    healthCheckPath: /health

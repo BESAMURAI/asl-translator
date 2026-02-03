@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASL Translator - Sign Language Recognition</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="hand-animation">
+                <div class="hand-icon">👋</div>
+            </div>
+            <h2>ASL Translator</h2>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="app" id="mainApp">
+        <header class="header fade-in">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="title-icon">🤟</span>
+                    ASL Translator
+                </h1>
+                <p class="subtitle">Real-time American Sign Language recognition and translation</p>
+            </div>
+        </header>
+
+        <div class="tabs fade-in-delay">
+            <button class="tab-btn active" data-tab="sign-to-text">
+                <span>📹</span> Sign to Text
+            </button>
+            <button class="tab-btn" data-tab="text-to-sign">
+                <span>📚</span> Text to Sign
+            </button>
+        </div>
+
+        <!-- Sign to Text Tab -->
+        <section class="tab-content active" id="sign-to-text">
+            <div class="grid">
+                <div class="card slide-in-left">
+                    <div class="card-header">
+                        <h2>📹 Camera Feed</h2>
+                        <div class="status-indicator" id="cameraStatus">
+                            <span class="status-dot"></span>
+                            <span>Ready</span>
+                        </div>
+                    </div>
+                    <div class="video-container">
+                        <video id="video" autoplay playsinline></video>
+                        <canvas id="canvas" width="640" height="480" hidden></canvas>
+                        <div class="video-overlay" id="videoOverlay">
+                            <p>Click "Start Camera" to begin</p>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button id="startBtn" class="btn btn-primary">
+                            <span>▶</span> Start Camera
+                        </button>
+                        <button id="stopBtn" class="btn btn-secondary">
+                            <span>⏹</span> Stop
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card slide-in-right">
+                    <div class="card-header">
+                        <h2>🎯 Prediction</h2>
+                    </div>
+                    <div class="prediction-container">
+                        <div class="prediction">
+                            <span id="letter" class="letter-display">—</span>
+                            <div class="confidence-badge" id="confidenceBadge">
+                                <span id="confidence"></span>
+                            </div>
+                        </div>
+                        <div id="topPredictions" class="top-predictions"></div>
+                    </div>
+                    <div class="typed-section">
+                        <h3>📝 Typed Word</h3>
+                        <div class="word-display">
+                            <div class="word" id="word">
+                                <span class="placeholder">Your word will appear here...</span>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <button id="backspaceBtn" class="btn btn-icon">
+                                <span>⌫</span> Backspace
+                            </button>
+                            <button id="clearBtn" class="btn btn-icon">
+                                <span>🗑</span> Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text to Sign Tab -->
+        <section class="tab-content" id="text-to-sign">
+            <div class="card slide-in-up">
+                <div class="card-header">
+                    <h2>📚 Word to Signs</h2>
+                    <p class="card-description">Enter a word to see the sign language sequence</p>
+                </div>
+                <div class="word-input-section">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="wordInput" 
+                            placeholder="Type a word (e.g., HELLO)" 
+                            class="word-input"
+                            maxlength="20"
+                        />
+                        <button id="showSignsBtn" class="btn btn-primary btn-large">
+                            <span>🔍</span> Show Signs
+                        </button>
+                    </div>
+                    <div class="input-hint">
+                        <span>💡 Tip: Use uppercase letters. Images should be named A.jpg, B.jpg, etc. in assets/asl_gifs/</span>
+                    </div>
+                </div>
+                <div class="signs-display" id="signsDisplay">
+                    <div class="empty-state">
+                        <div class="empty-icon">👐</div>
+                        <p>Enter a word above to see the sign language sequence</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
